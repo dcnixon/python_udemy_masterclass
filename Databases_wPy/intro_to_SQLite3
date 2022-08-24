@@ -1,0 +1,50 @@
+SELECT artists.name, albums.name, songs.track, songs.title FROM songs
+   INNER JOIN albums ON songs.album = albums._id
+   INNER JOIN artists ON albums.artist = artists._id
+   WHERE albums._id = 19
+   ORDER BY artists.name, albums.name, songs.track;
+
+SELECT artists.name AS "Artist", albums.name AS "Album", songs.track, songs.title FROM songs
+   INNER JOIN albums ON songs.album = albums._id
+   INNER JOIN artists ON albums.artist = artists._id
+   WHERE artists.name LIKE "jefferson%"
+   ORDER BY artists.name, albums.name, songs.track;
+
+
+
+LIKE is not case sensitive - so it also makes the search case-insensitive
+
+? matches a sequence of any number of characters
+_ matches a single character
+[] matches a single character within the brackets
+[ - ] matches a single character with the given range
+[ ^ ] matches a single character NOT listed after the caret (exclusion)
+
+CREATE VIEW artist_list AS
+    SELECT artists.name AS artist, albums.name AS album, songs.track, songs.title FROM songs
+    INNER JOIN albums ON songs.album = albums._id
+    INNER JOIN artists ON albums.artist = artists._id
+    ORDER BY artists.name, albums.name, songs.track;
+
+CREATE VIEW album_list AS
+    SELECT name FROM albums
+    ORDER BY name COLLATE NOCASE;
+
+SELECT * FROM artist_list
+    WHERE artist LIKE "jefferson%";
+
+
+
+/* 1. Titles of all songs of Album Forbidden */
+
+SELECT title FROM
+
+-- 2. Repeat in track order
+/* 3. all songs for band Deep Purple */
+-- 4. Rename the band "Mehitabel to "One Kitten"
+-- 5. Check rename worked
+-- 6. titles of Aerosmith in alphabetical order
+-- 7. count(title) of the previous
+-- 8. get list of 6. with no duplicates
+-- 9. get count with no duplicates
+-- 10. Repeat previous query to find the number of artists (1) and albums (??)
